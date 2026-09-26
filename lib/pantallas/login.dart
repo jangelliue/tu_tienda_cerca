@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tu_tienda_cerca/pantallas/inicio.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -123,7 +124,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const InicioScreen(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF167A5A),
                       foregroundColor: Colors.white,
