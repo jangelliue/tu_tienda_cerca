@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch - Tu Tienda Cerca</title>
+    
+    <!-- Reveal.js Base CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    
+    <!-- Google Fonts: Poppins (Muy amigable y estilo startup) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-green: #157351;
+            --brand-light-green: #e8f5e9;
+            --brand-accent: #ff6b6b; /* Un toque cálido para contrastar */
+            --brand-dark: #2d3436;
+            --brand-bg: #fffdf9; /* Un crema muy cálido y amigable */
+        }
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+            color: var(--brand-dark);
+            background-color: var(--brand-bg);
+        }
+
+        /* Tipografía Amigable */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--brand-dark);
+            text-transform: none;
+            letter-spacing: -1px;
+        }
+
+        .reveal h1 { font-size: 3.5em; line-height: 1.1; margin-bottom: 20px;}
+        .reveal h2 { font-size: 2.2em; color: var(--brand-dark); margin-bottom: 30px;}
+        .reveal p, .reveal li { font-size: 0.95em; line-height: 1.5; color: #555;}
+        
+        .text-green { color: var(--brand-green); }
+        .text-accent { color: var(--brand-accent); }
+        .text-small { font-size: 0.7em !important; color: #777; }
+
+        /* Contenedores Flexibles */
+        .flex-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+        
+        .col-50 { width: 50%; text-align: left; }
+        .col-100 { width: 100%; text-align: center; }
+
+        /* Tarjetas de Producto / Negocio */
+        .startup-card {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(21, 115, 81, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .startup-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-light-green);
+        }
+
+        .startup-card h3 { font-size: 1.3em; margin-bottom: 10px; color: var(--brand-green);}
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* Diseño del Celular más moderno y suave */
+        .phone-mockup {
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: 12px solid #fff;
+            outline: 2px solid #eaeaea;
+            overflow: hidden;
+            background: #fff;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .phone-mockup img { display: block; width: 100%; height: auto; margin: 0 !important; }
+        
+        .mockup-hero { max-height: 65vh; width: auto; transform: rotate(-3deg); transition: transform 0.5s; }
+        .mockup-hero:hover { transform: rotate(0deg) scale(1.02); }
+        .mockup-md { max-height: 55vh; width: auto; }
+        .mockup-sm { max-height: 45vh; width: auto; border-radius: 25px; border-width: 8px;}
+
+        /* Badges y Checklists (Para los requisitos) */
+        .pill {
+            display: inline-block;
+            background: var(--brand-light-green);
+            color: var(--brand-green);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.7em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .check-list { list-style: none; padding: 0; margin: 0; }
+        .check-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--brand-dark);
+        }
+        .check-list li::before {
+            content: '✨';
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Snippet de código amigable */
+        .code-box {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 20px;
+            border-radius: 16px;
+            font-family: monospace;
+            font-size: 0.7em;
+            text-align: left;
+            border-left: 5px solid var(--brand-green);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Diapositiva 1: Portada (Vende la idea desde el inicio) -->
+            <section>
+                <div class="flex-row">
+                    <div class="col-50">
+                        <span class="pill">APP DE DELIVERY LOCAL</span>
+                        <h1 class="text-green">Tu Tienda Cerca</h1>
+                        <p style="font-size: 1.4em; font-weight: 600;">Lo que necesitas,<br>cerca de ti.</p>
+                        <br><br>
+                        <p class="text-small">
+                            <strong>Fundadores / Desarrolladores:</strong><br>
+                            José Angel Lopez & Ana María Ávila Suarez<br>
+                            MVP - Programación Móvil (IF2004)
+                        </p>
+                    </div>
+                    <div class="col-50">
+                        <div class="phone-mockup mockup-hero">
+                            <!--[cite: 2] mockup inicio -->
+                            <img src="mockups/p02-inicio.png" alt="Pantalla de Inicio">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 2: El Dolor del Usuario (Negocio) -->
+            <section>
+                <h2>El comercio local se quedó <span class="text-accent">desconectado</span></h2>
+                <p>Las tiendas de barrio tienen excelentes productos, pero hoy comprar en ellas es un proceso manual, lento y a ciegas para el usuario.</p>
+                
+                <div class="grid-3">
+                    <div class="startup-card">
+                        <div style="font-size: 2.5em; margin-bottom: 15px;">🛒</div>
+                        <h3>Visibilidad nula</h3>
+                        <p>El cliente no sabe qué tienda tiene los productos que necesita sin caminar hasta allá.</p>
+                    </div>
+                    <div class="startup-card">
+                        <div style="font-size: 2.5em; margin-bottom: 15px;">⏳</div>
+                        <h3>Proceso lento</h3>
+                        <p>Depender de llamadas o chats de WhatsApp que se demoran en ser respondidos.</p>
+                    </div>
+                    <div class="startup-card">
+                        <div style="font-size: 2.5em; margin-bottom: 15px;">🤷‍♂️</div>
+                        <h3>Decisión a ciegas</h3>
+                        <p>Es imposible comparar quién tiene todo el mercado o el mejor costo de domicilio.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 3: La Solución (Nuestra Propuesta de Valor) -->
+            <section>
+                <div class="flex-row">
+                    <div class="col-50">
+                        <h2>Nuestra Solución</h2>
+                        <p style="font-size: 1.2em;">Una app que no solo muestra productos, sino que <strong class="text-green">compara inteligentemente</strong> qué tienda del barrio puede surtir todo tu mercado al instante.</p>
+                        <br>
+                        <ul class="check-list">
+                            <li>Búsqueda unificada de productos.</li>
+                            <li>Motor que sugiere la mejor tienda.</li>
+                            <li>Impulso real a la economía del barrio.</li>
+                        </ul>
+                    </div>
+                    <div class="col-50">
+                        <div class="phone-mockup mockup-md">
+                            <!--[cite: 5] mockup comparador carrito -->
+                            <img src="mockups/p05-carrito.png" alt="Carrito Inteligente">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 4: Experiencia de Usuario (El recorrido del cliente) -->
+            <section>
+                <h2>Una experiencia simple y familiar</h2>
+                <p>Diseñamos la app pensando en la rapidez. Sin fricciones desde el primer clic.</p>
+                <div class="flex-row" style="align-items: flex-end; justify-content: center; gap: 30px; margin-top: 30px;">
+                    
+                    <div style="text-align: center;">
+                        <p class="text-small"><strong>1. Ingreso Seguro</strong></p>
+                        <div class="phone-mockup mockup-sm">
+                            <!--[cite: 1] mockup login -->
+                            <img src="mockups/p01-login.png" alt="Login">
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <p class="text-small"><strong>2. Exploración Rápida</strong></p>
+                        <div class="phone-mockup mockup-sm" style="transform: scale(1.1); z-index: 10;">
+                            <!--[cite: 2] mockup inicio -->
+                            <img src="mockups/p02-inicio.png" alt="Inicio">
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <p class="text-small"><strong>3. Motor de Decisión</strong></p>
+                        <div class="phone-mockup mockup-sm">
+                            <!--[cite: 5] mockup carrito -->
+                            <img src="mockups/p05-carrito.png" alt="Carrito">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 5: Cumpliendo el Requisito del Flujo "Lista a Detalle" (Pero con enfoque de negocio) -->
+            <section>
+                <h2>Descubrimiento de Productos</h2>
+                <div class="flex-row">
+                    <div class="col-50">
+                        <p>No mostramos información estática. Cuando el usuario busca un producto, la plataforma consulta el catálogo y transfiere esa información en tiempo real a la vista de detalle.</p>
+                        <div class="startup-card" style="background: var(--brand-light-green); border: none; margin-top: 20px;">
+                            <h3 style="margin: 0; font-size: 1.1em;">💡 Dinamismo (Lista a Detalle)</h3>
+                            <p class="text-small" style="margin-top: 5px; color: var(--brand-green);">Al seleccionar "Arroz", la app inyecta dinámicamente su precio, tiendas que lo tienen y productos alternativos.</p>
+                        </div>
+                    </div>
+                    <div class="col-50" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                        <!--[cite: 3] y[cite: 4] mockups lista a detalle -->
+                        <div class="phone-mockup mockup-sm"><img src="mockups/p03-mercado.png" alt="Lista"></div>
+                        <div style="font-size: 2.5em; color: var(--brand-green);">👉</div>
+                        <div class="phone-mockup mockup-sm"><img src="p04-producto.png" alt="Detalle"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 6: Checklist Académico (Vendiendo los requisitos como hitos cumplidos) -->
+            <section>
+                <h2>Hitos técnicos de nuestro MVP</h2>
+                <p>Para esta versión funcional, hemos implementado con éxito:</p>
+                <br>
+                <div class="flex-row">
+                    <div class="col-50 startup-card">
+                        <h3>📱 Interfaz y Usabilidad</h3>
+                        <ul class="check-list">
+                            <li><strong>Más de 5 pantallas</strong> totalmente navegables.</li>
+                            <li><strong>Formulario de acceso</strong> operativo y validado.</li>
+                            <li>Navegación nativa súper fluida para el usuario.</li>
+                        </ul>
+                    </div>
+                    <div class="col-50 startup-card">
+                        <h3>💾 Datos y Lógica</h3>
+                        <ul class="check-list">
+                            <li><strong>Persistencia Local:</strong> Tu carrito no se pierde si cierras la app (RNF-01).</li>
+                            <li><strong>Flujo Dinámico:</strong> Paso de parámetros reales entre vistas.</li>
+                            <li>Lógica de tiendas candidatas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 7: El modelo detrás del negocio (Base de datos explicada simple) -->
+            <section>
+                <h2>¿Cómo organizamos la información?</h2>
+                <p>Para que la app recomiende la mejor tienda, estructuramos nuestras entidades así:</p>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap;">
+                    <div class="startup-card" style="text-align: center; width: 180px;">
+                        <h3 style="font-size: 1.1em;">👤 Usuario</h3>
+                        <p class="text-small">Guarda la sesión y preferencias locales.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; font-size: 2em; color: #ddd;">+</div>
+                    <div class="startup-card" style="text-align: center; width: 180px;">
+                        <h3 style="font-size: 1.1em;">🏪 Tienda</h3>
+                        <p class="text-small">Inventario, distancia y costo de domicilio.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; font-size: 2em; color: #ddd;">+</div>
+                    <div class="startup-card" style="text-align: center; width: 180px; border: 2px solid var(--brand-green);">
+                        <h3 style="font-size: 1.1em;">🛍️ Producto</h3>
+                        <p class="text-small">Detalles, precios y alternativas.</p>
+                    </div>
+                </div>
+                <p class="text-small" style="margin-top: 30px; text-align: center;"><em>* Toda la información del carrito y sesión sobrevive en la memoria del dispositivo (Persistencia)</em></p>
+            </section>
+
+            <!-- Diapositiva 8: Un vistazo rápido a la tecnología (El código exigido, pero amigable) -->
+            <section>
+                <h2>Tecnología: Navegación Nativa</h2>
+                <div class="flex-row">
+                    <div class="col-50">
+                        <p>Desarrollamos la app usando <strong>Flutter</strong>.</p>
+                        <p>Para asegurar que la navegación se sienta como una app profesional y no como una página web, usamos el enrutamiento nativo.</p>
+                        <p class="text-small">Esto permite pasar datos (como el producto elegido) a la siguiente pantalla y habilitar el botón "Atrás" del celular por defecto.</p>
+                    </div>
+                    <div class="col-50 code-box">
+// Al tocar un producto en la lista:
+onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetalleProducto(
+        // Le pasamos la data real
+        producto: productoSeleccionado, 
+      ),
+    ),
+  );
+}
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 9: Cierre de Pitch -->
+            <section>
+                <h2 style="font-size: 3em;">¿Listos para comprar en el barrio?</h2>
+                <p style="font-size: 1.3em;">Tu Tienda Cerca no es solo un proyecto académico,<br>es la evolución del comercio local.</p>
+                <br>
+                <span class="pill" style="font-size: 1em; background: var(--brand-green); color: white;">A continuación: Demostración en vivo 🚀</span>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide', // Efecto de deslizamiento natural
+            controls: false,     // Oculta flechas (usa el teclado)
+            progress: true,      // Barra inferior
+            center: true,
+            margin: 0.1,
+        });
+    </script>
+</body>
+</html>
