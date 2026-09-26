@@ -1,12 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:tu_tienda_cerca/pantallas/mercado.dart';
+import 'package:tu_tienda_cerca/pantallas/carrito.dart';
 
-class InicioScreen extends StatelessWidget {
+class InicioScreen extends StatefulWidget {
   const InicioScreen({super.key});
 
   @override
+  State<InicioScreen> createState() => _InicioScreenState();
+}
+
+class _InicioScreenState extends State<InicioScreen> {
+  final List<Map<String, String>> carrito = [];
+
+  void _abrirMercado() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MercadoScreen(
+          carrito: carrito,
+          onAgregarAlCarrito: (producto) {
+            setState(() {
+              carrito.add(producto);
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  void _abrirCarrito() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CarritoScreen(carrito: carrito),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    const Color verde = Color(0xFF167A5A);    
+    const Color verde = Color(0xFF167A5A);
     const Color fondo = Color(0xFFFFFCF7);
     const Color borde = Color(0xFFE9E5DE);
     const Color textoSuave = Color(0xFF66706C);
@@ -61,17 +94,10 @@ class InicioScreen extends StatelessWidget {
                 enlace: 'Empezar >',
                 colorFondo: const Color(0xFFFFF7EA),
                 colorIcono: verde,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MercadoScreen(),
-                    ),
-                  );
-                },
+                onPressed: _abrirMercado,
               ),
               const SizedBox(height: 10),
-              _buildTarjetaPrincipal(                
+              _buildTarjetaPrincipal(
                 icono: Icons.storefront_outlined,
                 titulo: 'Elige tu tienda de confianza',
                 subtitulo: 'Compra directo en tu tienda favorita',
@@ -133,6 +159,11 @@ class InicioScreen extends StatelessWidget {
         selectedItemColor: verde,
         unselectedItemColor: textoSuave,
         type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          if (index == 2) {
+            _abrirCarrito();
+          }
+        },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Buscar'),
@@ -153,7 +184,7 @@ class InicioScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTarjetaPrincipal({    
+  Widget _buildTarjetaPrincipal({
     required IconData icono,
     required String titulo,
     required String subtitulo,

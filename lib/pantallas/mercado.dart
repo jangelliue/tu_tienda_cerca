@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-//import 'producto.dart';
+import 'producto.dart';
+import 'carrito.dart';
 
 class MercadoScreen extends StatelessWidget {
-  const MercadoScreen({super.key});
+  final List<Map<String, String>> carrito;
+  final Function(Map<String, String>) onAgregarAlCarrito;
+
+  const MercadoScreen({
+    super.key,
+    required this.carrito,
+    required this.onAgregarAlCarrito,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +46,19 @@ class MercadoScreen extends StatelessWidget {
       backgroundColor: fondo,
       appBar: AppBar(
         title: const Text('Arma tu mercado'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CarritoScreen(carrito: carrito),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -94,7 +115,7 @@ class MercadoScreen extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductoScreen(
@@ -103,7 +124,7 @@ class MercadoScreen extends StatelessWidget {
                             precio: producto['precio']!,
                           ),
                         ),
-                      );*/
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -165,16 +186,15 @@ class MercadoScreen extends StatelessWidget {
                                 height: 28,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    /*Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ProductoScreen(
-                                          nombre: producto['nombre']!,
-                                          detalle: producto['detalle']!,
-                                          precio: producto['precio']!,
+                                    onAgregarAlCarrito(producto);
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          '${producto['nombre']} agregado al carrito',
                                         ),
                                       ),
-                                    );*/
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.zero,
@@ -197,34 +217,44 @@ class MercadoScreen extends StatelessWidget {
                 },
               ),
             ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
-              ),
-              decoration: BoxDecoration(
-                color: verde,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '3 productos agregados',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CarritoScreen(carrito: carrito),
                   ),
-                  Text(
-                    'Ver carrito',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+                decoration: BoxDecoration(
+                  color: verde,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${carrito.length} productos agregados',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                    const Text(
+                      'Ver carrito',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
