@@ -122,6 +122,8 @@ class MercadoScreen extends StatelessWidget {
                             nombre: producto['nombre']!,
                             detalle: producto['detalle']!,
                             precio: producto['precio']!,
+                            carrito: carrito,
+                            onAgregarAlCarrito: onAgregarAlCarrito,
                           ),
                         ),
                       );

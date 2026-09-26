@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'carrito.dart';
 
 class ProductoScreen extends StatelessWidget {
   final String nombre;
   final String detalle;
   final String precio;
+  final List<Map<String, String>> carrito;
+  final Function(Map<String, String>) onAgregarAlCarrito;
 
   const ProductoScreen({
     super.key,
     required this.nombre,
     required this.detalle,
     required this.precio,
+    required this.carrito,
+    required this.onAgregarAlCarrito,
   });
 
   @override
@@ -23,7 +26,22 @@ class ProductoScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: fondo,
-      appBar: AppBar(title: const Text('Detalle del producto')),
+      appBar: AppBar(
+        title: const Text('Detalle del producto'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CarritoScreen(carrito: carrito),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -48,12 +66,18 @@ class ProductoScreen extends StatelessWidget {
             const SizedBox(height: 18),
             Text(
               nombre,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               detalle,
-              style: const TextStyle(fontSize: 14, color: textoSuave),
+              style: const TextStyle(
+                fontSize: 14,
+                color: textoSuave,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
@@ -78,12 +102,18 @@ class ProductoScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Información',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'Producto disponible en varias tiendas cercanas. Puedes agregarlo al carrito para comparar dónde te sale mejor el mercado completo.',
-                    style: TextStyle(fontSize: 13, color: textoSuave),
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: textoSuave,
+                    ),
                   ),
                 ],
               ),
@@ -93,10 +123,18 @@ class ProductoScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  final producto = {
+                    'nombre': nombre,
+                    'detalle': detalle,
+                    'precio': precio,
+                  };
+
+                  onAgregarAlCarrito(producto);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CarritoScreen(),
+                      builder: (context) => CarritoScreen(carrito: carrito),
                     ),
                   );
                 },
@@ -132,7 +170,10 @@ class ProductoScreen extends StatelessWidget {
                 ),
                 child: const Text(
                   'Volver',
-                  style: TextStyle(color: verde, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: verde,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
