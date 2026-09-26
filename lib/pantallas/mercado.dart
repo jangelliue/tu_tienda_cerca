@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'producto.dart';
+import 'package:tu_tienda_cerca/pantallas/producto.dart';
+import 'package:tu_tienda_cerca/pantallas/carrito.dart';
 
 class MercadoScreen extends StatelessWidget {
   const MercadoScreen({super.key});
@@ -94,7 +95,7 @@ class MercadoScreen extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductoScreen(
@@ -103,7 +104,7 @@ class MercadoScreen extends StatelessWidget {
                             precio: producto['precio']!,
                           ),
                         ),
-                      );*/
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -165,7 +166,7 @@ class MercadoScreen extends StatelessWidget {
                                 height: 28,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    /*Navigator.push(
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => ProductoScreen(
@@ -174,7 +175,7 @@ class MercadoScreen extends StatelessWidget {
                                           precio: producto['precio']!,
                                         ),
                                       ),
-                                    );*/
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.zero,
@@ -198,33 +199,51 @@ class MercadoScreen extends StatelessWidget {
               ),
             ),
             Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                color: Colors.white,
               ),
-              decoration: BoxDecoration(
-                color: verde,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '3 productos agregados',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CarritoScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: verde,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
                   ),
-                  Text(
-                    'Ver carrito',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '3 productos agregados',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Ver carrito',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ],
